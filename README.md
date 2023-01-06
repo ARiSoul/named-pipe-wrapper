@@ -1,10 +1,12 @@
-# Named Pipe Wrapper for .NET 4.0
+# Named Pipe Wrapper for .NET 4.8 (no conflicts found with .Net 7 usage in Windows SO)
 
 A simple, easy to use, strongly-typed wrapper around .NET named pipes.
 
-# NuGet Package
+# THIS IS A FORK
 
-Available as a [NuGet package](https://www.nuget.org/packages/NamedPipeWrapper/).
+Credits to the original creator acdvorak. He has a *Nuget Package* available in (https://www.nuget.org/packages/NamedPipeWrapper/).
+As far as I could test, despite this being made with .Net 4.0, it works with no problems with .Net 7. In my version, it's upgraded to .Net 4.8.
+It cannot be upgraded to .Net Standard 2.0 to be compatible with most .Net Frameworks due to the reference to System.IO.Pipes.Security, that doesn't work with that version. That being said, most probably it only works with Windows SO.
 
 # Features
 
@@ -15,7 +17,7 @@ Available as a [NuGet package](https://www.nuget.org/packages/NamedPipeWrapper/)
 
 # Requirements
 
-Requires .NET 4.0 full.
+Requires .NET 4.0 full or greater until 4.8.
 
 # Usage
 
