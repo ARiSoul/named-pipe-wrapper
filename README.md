@@ -17,7 +17,7 @@ It cannot be upgraded to .Net Standard 2.0 to be compatible with most .Net Frame
 
 # Requirements
 
-Requires .NET 4.0 full or greater until 4.8.
+Requires .NET 4.8.
 
 # Usage
 
