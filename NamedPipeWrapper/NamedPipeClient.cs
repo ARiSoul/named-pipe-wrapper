@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO.Pipes;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using NamedPipeWrapper.IO;
@@ -42,6 +44,26 @@ namespace NamedPipeWrapper
         public bool AutoReconnect { get; set; }
 
         /// <summary>
+        /// Gets the name of the machine that started the connection.
+        /// </summary>
+        public string MachineName { get; }
+
+        /// <summary>
+        /// Gets the username of the user that started the connection.
+        /// </summary>
+        public string UserName { get; }
+
+        /// <summary>
+        /// Gets the domain username that started the connection.
+        /// </summary>
+        public string UserDomainName { get; }
+
+        /// <summary>
+        /// Gets the ip address of the device that started the connection.
+        /// </summary>
+        public IPAddress IpAddress { get; }
+
+        /// <summary>
         /// Invoked whenever a message is received from the server.
         /// </summary>
         public event ConnectionMessageEventHandler<TRead, TWrite> ServerMessage;
@@ -77,6 +99,11 @@ namespace NamedPipeWrapper
         {
             _pipeName = pipeName;
             _serverName = serverName;
+
+            MachineName = Environment.MachineName;
+            UserName = Environment.UserName;
+            UserDomainName = Environment.UserDomainName;
+            IpAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList.AsEnumerable().Where(ip => ip.AddressFamily.Equals(AddressFamily.InterNetwork)).FirstOrDefault();
             AutoReconnect = true;
         }
 
